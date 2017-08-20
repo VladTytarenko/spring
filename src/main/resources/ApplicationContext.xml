@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-lazy-init="true">
+	
+	<!-- default-init-method="initObject" 			 -->
+	<!-- default-destroy-method="destroyObject" 	 -->  
+	<!-- виконуються за замовчуванням для всіх бінів -->
+	<!-- якщо якогось из цих методів в якомусь       -->
+	<!-- из бінів не буде то нічого не станеться     -->
+	
+	<bean id="t1000" class="robot.ModelT1000"
+		p:hand-ref="toshibaHand"
+		p:leg-ref="sonyLeg"
+		p:head-ref="sonyHead" 
+		scope="prototype"
+		init-method="initObject"
+		destroy-method="destroyObject"
+		lazy-init="true">    
+		<!-- параметри init-method і destroy-method задають методи,	-->
+		<!-- які викликаються перед створенням і після знищення об'єкта -->
+		<!-- lazy-init бін створюється тільки при його виклику -->
+	
+<!--  		<constructor-arg ref="sonyHand"/>  -->
+<!--  		<constructor-arg ref="sonyLeg"/>  -->
+<!--  		<constructor-arg ref="sonyHead"/>  -->
+ 
+<!-- value - передати значення(часто використовується для простих типів данних) --> 
+<!-- ref - для відсилок на об'єкт -->
+ 
+		<constructor-arg value="silver" index="0" type="String"/>  
+ 		<constructor-arg value="2006" index="1" type="int"/>  
+		<constructor-arg value="true" index="2" type="boolean"/>
+		  
+<!--  name повинні співпадати з назвами змінніх в класі -->
+<!-- 		<property name="hand" ref="toshibaHand"/> -->
+<!-- 		<property name="head" ref="toshibaHead"/> -->
+<!--     	<property name="leg" ref="toshibaLeg"/>  -->
+
+	</bean>
+	
+	<bean id="t1000Empty" class="robot.ModelT1000" lazy-init="true">
+	
+		<constructor-arg ref="sonyHand" index="0"/>  
+ 		<constructor-arg ref="sonyLeg" index="1"/>  
+ 		<constructor-arg ref="toshibaHead" index="2"/>  
+	
+	</bean>
+	
+	<bean id="t1000All" class="robot.ModelT1000"
+		p:hand-ref="toshibaHand"
+		p:leg-ref="sonyLeg"
+		p:head-ref="sonyHead" 
+		lazy-init="true">
+		
+		<constructor-arg value="red" index="0" type="String"/>
+		<constructor-arg value="2011" index="1" type="int"/>
+		<constructor-arg value="true" index="2" type="boolean"/>
+	
+	</bean>
+	
+	<bean id="interfacesForLifeLoop" class="robot.Robot">
+	
+		<constructor-arg ref="sonyHead" index="0"/>
+		<constructor-arg ref="sonyHand" index="1"/>
+		<constructor-arg ref="toshibaLeg" index="2"/>
+		
+	</bean>
+
+	<bean id="sonyHand" class="sony.SonyHand"/>
+	<bean id="sonyHead" class="sony.SonyHead" scope="singleton"/>
+	<bean id="sonyLeg" class="sony.SonyLeg"/>
+	
+	<bean id="toshibaHand" class="toshiba.ToshibaHand"/>
+	<bean id="toshibaHead" class="toshiba.ToshibaHead"/>
+	<bean id="toshibaLeg" class="toshiba.ToshibaLeg"/>
+	
+	<!--  за замовчуванням викликаєтьсяя для всіх створюваних об'єктів -->
+	<bean name="beanPostProcessor" class="test.test.MyBeanPostProcessor"/>
+	
+</beans>
