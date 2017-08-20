@@ -11,6 +11,7 @@
 		<config>src/main/resources/sony_context.xml</config>
 		<config>src/main/resources/t1000_context.xml</config>
 		<config>src/main/resources/all_context.xml</config>
+		<config>src/main/resources/db_context.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

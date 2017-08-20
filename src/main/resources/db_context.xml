@@ -4,9 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
 	default-lazy-init="true">
 	
-	<bean id="toshibaHand" class="toshiba.ToshibaHand"/>
-	<bean id="toshibaHead" class="toshiba.ToshibaHead"/>
-	<bean id="toshibaLeg" class="toshiba.ToshibaLeg"/>
+	<bean id="databaseBean" class="database.Database"/>
 
 
 </beans>

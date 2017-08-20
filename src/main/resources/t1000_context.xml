@@ -7,14 +7,14 @@
 	
 	<import resource="toshiba_context.xml"/>
 	<import resource="sony_context.xml"/>
+	<import resource="db_context.xml"/>
 	
+	<!-- тег depends-on означає те,що перед тим, як проініціалізується bean t1000 буде проіціалізовано databaseBean -->
 	<bean id="t1000" class="robot.ModelT1000"
 		p:hand-ref="toshibaHand"
 		p:leg-ref="sonyLeg"
 		p:head-ref="sonyHead" 
-		scope="prototype"
-		init-method="initObject"
-		destroy-method="destroyObject">    
+		depends-on="databaseBean">    
 
 		<constructor-arg value="silver" index="0" type="String"/>  
  		<constructor-arg value="2006" index="1" type="int"/>  
@@ -22,6 +22,12 @@
 
 	</bean>
 	
-
-
+	<bean id="t1000Empty" class="robot.ModelT1000">
+	
+		<constructor-arg ref="sonyHand"/>
+		<constructor-arg ref="sonyLeg"/>
+		<constructor-arg ref="sonyHead"/>
+	
+	</bean>
+	
 </beans>

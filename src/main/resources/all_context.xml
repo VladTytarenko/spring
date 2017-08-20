@@ -6,4 +6,6 @@
 	
 	<import resource="t1000_context.xml"/>
 	
+	<bean class="test.test.MyBeanPostProcessor"/>
+	
 </beans>
