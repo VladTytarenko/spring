@@ -8,4 +8,8 @@
 	
 	<bean class="test.test.MyBeanPostProcessor"/>
 	
+	<bean id="t1000Conveyor" class="conveyor.T1000Conveyer">
+		<lookup-method name="createRobot" bean="t1000"/>
+	</bean>
+	
 </beans>

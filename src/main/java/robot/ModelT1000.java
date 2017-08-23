@@ -1,15 +1,13 @@
 package robot;
 
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
+
 import interfaces.Hand;
 import interfaces.Head;
 import interfaces.Leg;
-import interfaces.Robot;
 
-public class ModelT1000 implements Robot {
-
-	private Hand hand;
-	private Leg leg;
-	private Head head;
+public class ModelT1000 extends BaseModel implements InitializingBean, DisposableBean {
 
 	private String color;
 	private int year;
@@ -19,33 +17,27 @@ public class ModelT1000 implements Robot {
 	}
 
 	public ModelT1000(Hand hand, Leg leg, Head head) {
-		super();
-		this.hand = hand;
-		this.leg = leg;
-		this.head = head;
+		super(hand, leg, head);
+		
 	}
 
 	public ModelT1000(Hand hand, Leg leg, Head head, String color, int year, boolean soundEnabled) {
-		super();
-		this.hand = hand;
-		this.leg = leg;
-		this.head = head;
+		super(hand, leg, head);
 		this.color = color;
 		this.year = year;
 		this.soundEnabled = soundEnabled;
 	}
 
 	public ModelT1000(String color, int year, boolean soundEnabled) {
-		super();
 		this.color = color;
 		this.year = year;
 		this.soundEnabled = soundEnabled;
 	}
 
 	public void action() {
-		head.think();
-		hand.catchSomething();
-		leg.go();
+		getHead().think();
+		getHand().catchSomething();
+		getLeg().go();
 		System.out.println("color: " + color);
 		System.out.println("year: " + year);
 		System.out.println("can play sound: " + soundEnabled);
@@ -53,30 +45,6 @@ public class ModelT1000 implements Robot {
 
 	public void dance() {
 		System.out.println("T1000 is dancing!");
-	}
-
-	public Hand getHand() {
-		return hand;
-	}
-
-	public void setHand(Hand hand) {
-		this.hand = hand;
-	}
-
-	public Leg getLeg() {
-		return leg;
-	}
-
-	public void setLeg(Leg leg) {
-		this.leg = leg;
-	}
-
-	public Head getHead() {
-		return head;
-	}
-
-	public void setHead(Head head) {
-		this.head = head;
 	}
 
 	public String getColor() {
@@ -109,5 +77,14 @@ public class ModelT1000 implements Robot {
 
 	public void destroyObject() {
 		System.out.println("destroy");
+	}
+
+	public void destroy() throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void afterPropertiesSet() throws Exception {
+		System.out.println(this + " - method init()");
 	}
 }

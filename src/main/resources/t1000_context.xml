@@ -27,7 +27,7 @@
 	<!-- Тег depends-on означає те,що перед тим, як проініціалізується bean t1000 буде проіціалізовано databaseBean -->
 	<!-- спочатку створюються об'екти, які створюються в базовій моделі. -->
 	<!-- Щоб перевизначити property потрібно вказати те саме ім'я і нове значення. -->
-	<bean id="t1000" class="robot.ModelT1000" parent="baseModel">
+	<bean id="t1000" class="robot.ModelT1000" parent="baseModel" scope="prototype">
 		
 		<constructor-arg value="silver" index="3" type="String"/>  
  		<constructor-arg value="2006" index="4" type="int"/>  
