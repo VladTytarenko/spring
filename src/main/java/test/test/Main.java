@@ -5,15 +5,17 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import interfaces.Robot;
 import interfaces.RobotConveyor;
+import robot.ModelT1000;
 
 
 public class Main {
 
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("all_context.xml");
-		//ModelT1000 t1000 = (ModelT1000) context.getBean("t1000");
+		ModelT1000 t1000 = (ModelT1000) context.getBean("t1000");
+		t1000.action();
 		
-		RobotConveyor t1000Conveyor = (RobotConveyor) context.getBean("t1000Conveyor");
+		/*RobotConveyor t1000Conveyor = (RobotConveyor) context.getBean("t1000Conveyor");
 		
 		Robot terminator1 = t1000Conveyor.createRobot();
 		Robot terminator2 = t1000Conveyor.createRobot();
@@ -21,6 +23,6 @@ public class Main {
 		
 		System.out.println("terminator1 " + terminator1);
 		System.out.println("terminator2 " + terminator2);
-		System.out.println("terminator3 " + terminator3);
+		System.out.println("terminator3 " + terminator3);*/
 	}
 }
