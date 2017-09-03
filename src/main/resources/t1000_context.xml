@@ -9,10 +9,6 @@
 	<import resource="sony_context.xml"/>
 	<import resource="db_context.xml"/>
 	
-	<!-- В режимі runtime метод action біна t1000 заміняється на 	 -->
-	<!-- метод із класса ActionReplacer за допомогою replaced-method -->
-	<bean id="actionReplacer" class="robot.ActionReplacer"/>
-	
 	<!-- екземпляр bean не може створюватися з абстрактного класу -->
 	
 	<!-- можна, щоб в базовій моделі був клас, -->
@@ -36,8 +32,6 @@
 		<constructor-arg value="silver" index="3" type="String"/>  
  		<constructor-arg value="2006" index="4" type="int"/>  
 		<constructor-arg value="true" index="5" type="boolean"/>
-		
-		<replaced-method name="action" replacer="actionReplacer"/>
 		
 	</bean>
 	
